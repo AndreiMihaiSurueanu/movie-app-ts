@@ -14,22 +14,22 @@ import NoImage from '../images/no_image.jpg'
 // Hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
-const Movie = () => {
+const Movie: React.FC = () => {
     const { movieId } = useParams()
 
-    const {state: movie, loading, error} = useMovieFetch(movieId)
-    
+    const { state: movie, loading, error } = useMovieFetch(movieId)
+
     if (loading) {
-        return <Spinner/>
+        return <Spinner />
     }
     if (error) {
         return <div>Something went wrong...</div>
     }
-    
+
     return (
         <>
             <BreadCrumb movieTitle={movie.original_title} />
-            <MovieInfo movie={movie}/>
+            <MovieInfo movie={movie} />
             <MovieInfoBar
                 time={movie.runtime}
                 budget={movie.budget}
@@ -43,8 +43,8 @@ const Movie = () => {
                         character={actor.character}
                         imageUrl={
                             actor.profile_path
-                            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-                            : NoImage
+                                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+                                : NoImage
                         }
                     />
                 ))}
