@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types'
 // Image
 import searchIcon from '../../images/search-icon.svg'
 // Styles
-import {Wrapper, Content} from './SearchBar.styles'
+import { Wrapper, Content } from './SearchBar.styles'
+// Types
+type Props = {
+    setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+}
 
-const SearchBar = ({setSearchTerm}) => {
+const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
     const [state, setState] = useState('')
     const initial = useRef(true)
 
@@ -23,20 +26,16 @@ const SearchBar = ({setSearchTerm}) => {
     return (
         <Wrapper>
             <Content>
-                <img src={searchIcon} alt='search-icon'/>
-                <input 
-                    type='text' 
+                <img src={searchIcon} alt='search-icon' />
+                <input
+                    type='text'
                     placeholder='Search Movie'
                     onChange={event => setState(event.currentTarget.value)}
-                    value={state }
+                    value={state}
                 />
             </Content>
         </Wrapper>
     )
-}
-
-SearchBar.propTypes = {
-    callback: PropTypes.func
 }
 
 export default SearchBar;
